@@ -23,31 +23,40 @@
   <link rel="icon" href="https://jhuxtelloitech.com/wp-content/uploads/2024/09/jest.png" type="image/png" />
   <title>JestBot AI Chat – Powered by Jhuxtello iTech</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #f4f4f4;
       margin: 0;
-      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
     }
 
     #chatBox {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
       max-width: 700px;
+      width: 100%;
       margin: auto;
       background: white;
-      padding: 20px;
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      overflow: hidden;
       border-top: 6px solid #FD7407;
     }
 
     .logo {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 10px;
+      text-align: center;
+      padding: 15px 0 5px;
     }
 
     .logo img {
-      width: 70px;
+      width: 60px;
       animation: bounce 2s infinite;
     }
 
@@ -59,17 +68,15 @@
     h2 {
       text-align: center;
       color: #001F3F;
-      margin-bottom: 20px;
+      margin: 0;
+      padding-bottom: 10px;
     }
 
     #chatLog {
-      height: 450px;
-      overflow-y: auto;
-      border: 1px solid #ccc;
+      flex: 1;
       padding: 10px;
-      margin-bottom: 15px;
+      overflow-y: auto;
       background: #fff;
-      border-radius: 8px;
     }
 
     .msg {
@@ -77,30 +84,38 @@
       padding: 10px 15px;
       margin: 10px 0;
       border-radius: 16px;
-      clear: both;
-      word-wrap: break-word;
       line-height: 1.5;
+      word-wrap: break-word;
+      clear: both;
     }
 
     .user {
       background-color: #FD7407;
       color: white;
-      float: right;
+      margin-left: auto;
       text-align: right;
     }
 
     .bot {
       background-color: #001F3F;
       color: white;
-      float: left;
+      margin-right: auto;
       text-align: left;
     }
 
-    #userInput {
-      width: 75%;
+    #inputArea {
+      display: flex;
+      border-top: 1px solid #ddd;
       padding: 10px;
-      border-radius: 5px;
+      gap: 10px;
+    }
+
+    #userInput {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
       border: 1px solid #ccc;
+      font-size: 16px;
     }
 
     button {
@@ -108,23 +123,33 @@
       background-color: #FD7407;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
+      font-size: 16px;
     }
 
     button:hover {
       background-color: #e55f00;
     }
 
+    footer {
+      text-align: center;
+      font-size: 13px;
+      padding: 12px 10px;
+      background: #fafafa;
+      color: #666;
+      border-top: 1px solid #ddd;
+    }
+
     pre {
-      background: rgba(255,255,255,0.1);
-      padding: 10px;
+      background: rgba(0,0,0,0.05);
+      padding: 8px;
       border-radius: 5px;
       overflow-x: auto;
     }
 
     code {
-      background: rgba(255,255,255,0.1);
+      background: rgba(0,0,0,0.05);
       padding: 2px 4px;
       border-radius: 3px;
     }
@@ -138,10 +163,19 @@
       <img src="https://jhuxtelloitech.com/wp-content/uploads/2024/09/jest.png" alt="JestBot Logo">
     </div>
     <h2>JestBot — Ask Me Anything</h2>
+
     <div id="chatLog"></div>
-    <input type="text" id="userInput" placeholder="Ask a question..." />
-    <button onclick="sendMessage()">Send</button>
+
+    <div id="inputArea">
+      <input type="text" id="userInput" placeholder="Ask a question..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
   </div>
+
+  <footer>
+    🤖 JestBot can make mistakes. Verify important info.<br>
+    🔋 Powered by <strong>Team Jest</strong>.
+  </footer>
 
 <script>
   function sendMessage() {
@@ -167,7 +201,6 @@
       });
   }
 
-  // ✅ Trigger sendMessage when Enter is pressed
   document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("userInput").addEventListener("keydown", function (e) {
       if (e.key === "Enter") {
@@ -177,7 +210,6 @@
     });
   });
 </script>
-
 
 </body>
 </html>
