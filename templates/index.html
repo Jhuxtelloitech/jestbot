@@ -90,18 +90,44 @@
     }
 
     .user {
-      background-color: #FD7407;
-      color: white;
-      margin-left: auto;
-      text-align: right;
-    }
+  background-color: #FD7407;
+  color: white;
+  margin-left: auto;
+  margin-right: 10px;
+  text-align: right;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-bottom-right-radius: 0;
+}
 
-    .bot {
-      background-color: #001F3F;
-      color: white;
-      margin-right: auto;
-      text-align: left;
-    }
+
+   .bot {
+  background-color: #001F3F;
+  color: white;
+  margin-right: auto;
+  margin-left: 10px;
+  text-align: left;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-bottom-left-radius: 0;
+}
+
+    @media screen and (max-width: 480px) {
+  .msg {
+    max-width: 85%;
+    font-size: 15px;
+  }
+
+  #userInput {
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
 
     #inputArea {
       display: flex;
