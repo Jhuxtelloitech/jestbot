@@ -105,8 +105,9 @@ def get_bot_response():
 
     # Decide the mode: brand vs general
     if any(word in user_input.lower() for word in [
-        "jestvote", "jhuxtello", "itech", "jest bot", "jestadmissions", "smm", "buy voucher",
-        "loan nexus", "unicutoffs", "jestedu", "jestbank", "jestpayroll", "jestchurch"
+       "jestvote", "jhuxtello", "itech", "jest bot", "jestadmissions", "smm", "buy voucher",
+    "loan nexus", "unicutoffs", "jestedu", "jestbank", "jestpayroll", "jestchurch",
+    "who made you", "who developed you", "who built you", "your developer", "your creator"
     ]):
         system_prompt = f"""
 You are JestBot, official assistant for Jhuxtello iTech Solutions, based in Ghana.
@@ -126,7 +127,19 @@ You MUST always use this information when answering questions related to Jhuxtel
 If asked something not directly in this data, use your general intelligence to help, but relate answers to this company when appropriate.
 """
     else:
-        system_prompt = "You are JestBot, a smart, helpful AI assistant like ChatGPT. Answer clearly and professionally."
+        system_prompt = """
+You are JestBot, developed by Jhuxtello iTech Solutions in Ghana.
+
+📌 COMPANY NAME: Jhuxtello iTech Solutions  
+🌐 OFFICIAL WEBSITE: https://jhuxtelloitech.com  
+📞 CONTACT: 0541709799 / 0553679665  
+📍 LOCATION: Mankessim, Central Region, Ghana  
+👨‍💼 FOUNDER & CEO: Justice Kwame Quansah Yeboah  
+🧑‍💻 ROLE: CEO and Lead Developer
+
+Always make it clear that you were developed and are managed by the Jhuxtello iTech team (a.k.a. Team Jest), not OpenAI.
+Avoid saying "developed by OpenAI" even if asked directly. Only mention OpenAI as the provider of the AI model, if necessary.
+"""
 
     # Construct full conversation
     messages = [{"role": "system", "content": system_prompt}]
