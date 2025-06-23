@@ -153,76 +153,6 @@
       padding: 2px 4px;
       border-radius: 3px;
     }
-    #inputArea {
-  display: flex;
-  align-items: center;
-  border-top: 1px solid #ddd;
-  padding: 10px;
-  gap: 8px;
-}
-
-#micBtn {
-  font-size: 20px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-#micBtn:hover {
-  color: #FD7407;
-}
-
-    /* 🌙 Dark Mode Styles */
-body.dark {
-  background: #121212;
-  color: #f1f1f1;
-}
-
-body.dark #chatBox {
-  background: #1e1e1e;
-  color: #f1f1f1;
-  border-top-color: #ffa94d;
-}
-
-body.dark .msg.user {
-  background-color: #ffa94d;
-  color: #000;
-}
-
-body.dark .msg.bot {
-  background-color: #2a2a2a;
-  color: #fff;
-}
-
-body.dark #userInput {
-  background-color: #2e2e2e;
-  color: #fff;
-  border-color: #444;
-}
-
-body.dark #inputArea {
-  border-top-color: #444;
-}
-
-body.dark footer {
-  background-color: #1a1a1a;
-  color: #ccc;
-}
-
-#darkToggle {
-  padding: 5px 12px;
-  font-size: 14px;
-  background: #444;
-  color: #fff;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-}
-
-#darkToggle:hover {
-  background: #666;
-}
-
   </style>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
@@ -233,21 +163,13 @@ body.dark footer {
       <img src="https://jhuxtelloitech.com/wp-content/uploads/2024/09/jest.png" alt="JestBot Logo">
     </div>
     <h2>JestBot — Ask Me Anything</h2>
-<div style="text-align: center; margin-bottom: 10px;">
-  <button id="darkToggle" onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
-</div>
-<div id="typingIndicator" style="display: none; color: #888; font-style: italic; padding: 5px 10px;">
-  🧠 JestBot is typing...
-</div>
 
     <div id="chatLog"></div>
 
     <div id="inputArea">
-  <button id="micBtn" title="Speak" onclick="startListening()">🎤</button>
-  <input type="text" id="userInput" placeholder="Ask a question..." />
-  <button id="sendBtn" onclick="sendMessage()">Send</button>
-</div>
-
+      <input type="text" id="userInput" placeholder="Ask a question..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
   </div>
 
   <footer>
@@ -256,97 +178,38 @@ body.dark footer {
   </footer>
 
 <script>
-  const input = document.getElementById("userInput");
-  const chatLog = document.getElementById("chatLog");
-  const sendBtn = document.getElementById("sendBtn");
-  const typingIndicator = document.getElementById("typingIndicator");
-
   function sendMessage() {
+    const input = document.getElementById("userInput");
+    const chatLog = document.getElementById("chatLog");
     const msg = input.value.trim();
     if (!msg) return;
-
-    input.disabled = true;
-    sendBtn.disabled = true;
 
     const userMsg = document.createElement("div");
     userMsg.className = "msg user";
     userMsg.innerText = msg;
     chatLog.appendChild(userMsg);
-    chatLog.scrollTop = chatLog.scrollHeight;
-
-    typingIndicator.style.display = "block";
 
     fetch("/get?msg=" + encodeURIComponent(msg))
       .then(res => res.text())
       .then(data => {
-        typingIndicator.style.display = "none";
-
         const botMsg = document.createElement("div");
         botMsg.className = "msg bot";
         botMsg.innerHTML = marked.parse(data);
         chatLog.appendChild(botMsg);
         chatLog.scrollTop = chatLog.scrollHeight;
         input.value = "";
-      })
-      .catch(() => {
-        typingIndicator.style.display = "none";
-        alert("Failed to get response.");
-      })
-      .finally(() => {
-        input.disabled = false;
-        sendBtn.disabled = false;
-        input.focus();
       });
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    input.addEventListener("keydown", function (e) {
+    document.getElementById("userInput").addEventListener("keydown", function (e) {
       if (e.key === "Enter") {
         e.preventDefault();
         sendMessage();
       }
     });
-
-    // Restore dark mode from localStorage
-    if (localStorage.getItem("darkMode") === "enabled") {
-      document.body.classList.add("dark");
-    }
   });
-
-  function toggleDarkMode() {
-    document.body.classList.toggle("dark");
-    if (document.body.classList.contains("dark")) {
-      localStorage.setItem("darkMode", "enabled");
-    } else {
-      localStorage.setItem("darkMode", "disabled");
-    }
-  }
-
-  // 🎤 Voice Recognition
-  function startListening() {
-    if (!('webkitSpeechRecognition' in window)) {
-      alert("Voice input not supported.");
-      return;
-    }
-
-    const recognition = new webkitSpeechRecognition();
-    recognition.lang = 'en-US';
-    recognition.interimResults = false;
-
-    recognition.onresult = function (event) {
-      const transcript = event.results[0][0].transcript;
-      input.value = transcript;
-      sendMessage();
-    };
-
-    recognition.onerror = function () {
-      alert("Voice recognition error");
-    };
-
-    recognition.start();
-  }
 </script>
-
 
 </body>
 </html>
