@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JestBot AI Chat</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+
+    #chatBox {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      border-top: 6px solid #FD7407;
+    }
+
+    .logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .logo img {
+      width: 70px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    h2 {
+      text-align: center;
+      color: #001F3F;
+      margin-bottom: 20px;
+    }
+
+    #chatLog {
+      height: 450px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 15px;
+      background: #fff;
+      border-radius: 8px;
+    }
+
+    .msg {
+      max-width: 75%;
+      padding: 10px 15px;
+      margin: 10px 0;
+      border-radius: 16px;
+      clear: both;
+      word-wrap: break-word;
+      line-height: 1.5;
+    }
+
+    .user {
+      background-color: #FD7407;
+      color: white;
+      float: right;
+      text-align: right;
+    }
+
+    .bot {
+      background-color: #001F3F;
+      color: white;
+      float: left;
+      text-align: left;
+    }
+
+    #userInput {
+      width: 75%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 15px;
+      background-color: #FD7407;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e55f00;
+    }
+
+    pre {
+      background: rgba(255,255,255,0.1);
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+
+    code {
+      background: rgba(255,255,255,0.1);
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+  <div id="chatBox">
+    <div class="logo">
+      <img src="https://jhuxtelloitech.com/wp-content/uploads/2024/09/jest.png" alt="JestBot Logo">
+    </div>
+    <h2>JestBot — Ask Me Anything</h2>
+    <div id="chatLog"></div>
+    <input type="text" id="userInput" placeholder="Ask a question..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+<script>
+  function sendMessage() {
+    const input = document.getElementById("userInput");
+    const chatLog = document.getElementById("chatLog");
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    const userMsg = document.createElement("div");
+    userMsg.className = "msg user";
+    userMsg.innerText = msg;
+    chatLog.appendChild(userMsg);
+
+    fetch("/get?msg=" + encodeURIComponent(msg))
+      .then(res => res.text())
+      .then(data => {
+        const botMsg = document.createElement("div");
+        botMsg.className = "msg bot";
+        botMsg.innerHTML = marked.parse(data);
+        chatLog.appendChild(botMsg);
+        chatLog.scrollTop = chatLog.scrollHeight;
+        input.value = "";
+      });
+  }
+
+  // ✅ Trigger sendMessage when Enter is pressed
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("userInput").addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>
