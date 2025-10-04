@@ -166,3 +166,7 @@ Avoid saying "developed by OpenAI" even if asked directly. Only mention OpenAI a
     except Exception as e:
         return f"Error: {str(e)}"
 
+if __name__ == "__main__":
+    # Only for local testing
+    app.run(host="0.0.0.0", port=8080)
+
