@@ -19,6 +19,7 @@
       background-size: 300% 300%;
       animation: bgMove 20s infinite alternate ease;
       transition: background 0.5s, color 0.3s;
+      overflow: hidden;
     }
 
     @keyframes bgMove {
@@ -35,6 +36,7 @@
       flex-direction: column;
       justify-content: space-between;
       transition: all 0.3s ease;
+      z-index: 20;
     }
 
     #sidebar.hidden { width: 70px; }
@@ -59,7 +61,6 @@
     }
 
     #sidebar button:hover { background: rgba(255,255,255,0.1); }
-
     #sidebar.hidden button span { display: none; }
 
     #sidebar .footer {
@@ -76,6 +77,7 @@
       flex-direction: column;
       height: 100vh;
       transition: background 0.3s ease;
+      position: relative;
     }
 
     header {
@@ -86,15 +88,16 @@
       padding: 10px 20px;
       border-bottom: 1px solid #ddd;
       backdrop-filter: blur(6px);
+      z-index: 5;
     }
 
     header img { width: 45px; border-radius: 50%; }
-    header h2 { margin: 0; font-size: 18px; color: #001f3f; }
+    header h2 { margin: 0; font-size: 18px; color: #001f3f; white-space: nowrap; }
 
     #toggleSidebar {
       background: none;
       border: none;
-      font-size: 22px;
+      font-size: 24px;
       cursor: pointer;
       color: #FD7407;
     }
@@ -196,11 +199,12 @@
       padding: 10px;
       background: #f1f1f1;
       border-top: 1px solid #ddd;
+      color: #333;
     }
 
     #typingIndicator {
       display: none;
-      color: #888;
+      color: #666;
       font-style: italic;
       padding: 8px 16px;
       animation: blink 1.5s infinite;
@@ -213,23 +217,86 @@
 
     /* Dark Mode */
     body.dark {
-      background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+      background: linear-gradient(135deg, #0d0d0d, #1c1c1c);
       color: #f1f1f1;
     }
 
-    body.dark #chatContainer header { background: rgba(20,20,20,0.95); border-bottom-color: #333; }
-    body.dark #chatContainer footer { background: #111; color: #aaa; }
-    body.dark #inputArea { background: #181818; border-top-color: #333; }
-    body.dark #userInput { background: #222; border-color: #444; color: #fff; }
-    body.dark .bot { background: #2c2c2c; }
-    body.dark #sidebar { background: #111; }
+    body.dark #chatContainer header {
+      background: rgba(20,20,20,0.95);
+      border-bottom-color: #333;
+    }
+
+    body.dark #chatContainer footer {
+      background: #111;
+      color: #bbb;
+    }
+
+    body.dark #inputArea {
+      background: #181818;
+      border-top-color: #333;
+    }
+
+    body.dark #userInput {
+      background: #222;
+      border-color: #444;
+      color: #fff;
+    }
+
+    body.dark .bot {
+      background: #2c2c2c;
+      color: #fff;
+    }
+
+    body.dark .user {
+      background: #ffa94d;
+      color: #000;
+    }
+
+    body.dark #sidebar {
+      background: #111;
+      color: #eee;
+    }
+
+    body.dark #sidebar button:hover {
+      background: rgba(255,255,255,0.08);
+    }
 
     /* Responsive */
     @media (max-width: 768px) {
-      #sidebar { position: fixed; z-index: 10; height: 100%; left: 0; top: 0; transform: translateX(-100%); }
+      #sidebar {
+        position: fixed;
+        z-index: 50;
+        height: 100%;
+        left: 0;
+        top: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+      }
+
       #sidebar.show { transform: translateX(0); }
-      #chatContainer { width: 100%; }
-      header h2 { font-size: 16px; }
+
+      #chatContainer {
+        width: 100%;
+      }
+
+      header h2 {
+        font-size: 15px;
+        white-space: nowrap;
+      }
+
+      /* Overlay effect when sidebar is open */
+      #overlay {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.4);
+        z-index: 40;
+      }
+
+      #overlay.active {
+        display: block;
+      }
     }
   </style>
 
@@ -249,12 +316,15 @@
     </div>
   </div>
 
+  <!-- Overlay for mobile -->
+  <div id="overlay" onclick="toggleSidebar()"></div>
+
   <!-- Chat Section -->
   <div id="chatContainer">
     <header>
       <button id="toggleSidebar" onclick="toggleSidebar()">☰</button>
       <h2>💬 JestBot – Smart AI Assistant</h2>
-      <button id="darkToggle" onclick="toggleDarkMode()">🌙</button>
+      <button id="darkToggle" onclick="toggleDarkMode()">🌗</button>
     </header>
 
     <div id="chatLog"></div>
@@ -266,7 +336,10 @@
       <button id="sendBtn" onclick="sendMessage()">➤</button>
     </div>
 
-    <footer>🤖 JestBot may make mistakes — verify important info. <br>⚡ Powered by <strong>Team Jest</strong>.</footer>
+    <footer>
+      🤖 JestBot may make mistakes — verify important info. <br>
+      ⚡ Powered by <strong>Team Jest</strong>.
+    </footer>
   </div>
 
   <audio id="typeSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_021f9b75c3.mp3?filename=keyboard-click-107974.mp3" preload="auto"></audio>
@@ -276,6 +349,8 @@
     const chatLog = document.getElementById("chatLog");
     const typingIndicator = document.getElementById("typingIndicator");
     const typeSound = document.getElementById("typeSound");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
 
     function sendMessage() {
       const msg = input.value.trim();
@@ -319,11 +394,13 @@
       document.body.classList.add("dark");
     }
 
-    // Sidebar controls
     function toggleSidebar() {
-      const sidebar = document.getElementById("sidebar");
-      if (window.innerWidth <= 768) sidebar.classList.toggle("show");
-      else sidebar.classList.toggle("hidden");
+      if (window.innerWidth <= 768) {
+        sidebar.classList.toggle("show");
+        overlay.classList.toggle("active");
+      } else {
+        sidebar.classList.toggle("hidden");
+      }
     }
 
     function newChat() {
@@ -335,10 +412,9 @@
     }
 
     function showAbout() {
-      alert("🤖 JestBot v2.0\nBuilt by Jhuxtello iTech Solutions (Ghana)\nEmpowering events, education & automation with AI.");
+      alert("🤖 JestBot v2.1\nBuilt by Jhuxtello iTech Solutions (Ghana)\nEmpowering events, education & automation with AI.");
     }
 
-    // Voice input
     function startListening() {
       if (!('webkitSpeechRecognition' in window)) {
         alert("Voice recognition not supported.");
