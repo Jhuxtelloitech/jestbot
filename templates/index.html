@@ -305,38 +305,89 @@
 <body>
 <!-- 🎉 Birthday & Launch Intro Animation -->
 <div id="launchOverlay" style="
-  position: fixed; inset: 0; background: radial-gradient(circle at top, #001F3F 20%, #000 80%);
+  position: fixed; inset: 0; 
+  background: radial-gradient(circle at top, #001F3F 15%, #000 85%);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  color: #fff; z-index: 9999; text-align: center; font-family: 'Poppins', sans-serif;
-  animation: fadeOut 2s ease 5s forwards;
+  color: #fff; z-index: 9999; text-align: center; 
+  font-family: 'Poppins', sans-serif; padding: 20px;
+  animation: fadeOut 2s ease 6s forwards;
 ">
-  <h1 style="font-size: 2.3rem; margin: 0; background: linear-gradient(90deg, #FD7407, #fff);
-             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-             text-shadow: 0 0 15px rgba(253,116,7,0.6); animation: glow 2s infinite alternate;">
-    🎉 Happy Birthday Justice!
+  <h1 style="
+    font-size: 2.6rem; margin: 0;
+    background: linear-gradient(90deg, #FD7407, #fff);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(253,116,7,0.8);
+    animation: glow 2s infinite alternate;
+  ">
+    🎉 Happy Birthday, Justice K. Quansah Yeboah!
   </h1>
-  <h2 style="margin-top: 10px; font-size: 1.4rem; color: #FD7407;">
-    Welcome to the Official Launch of <strong>JestBot 🚀</strong>
+
+  <h2 style="
+    margin-top: 12px; font-size: 1.4rem; 
+    color: #FD7407; text-shadow: 0 0 8px rgba(253,116,7,0.6);
+  ">
+    Official Launch of <strong>JestBot AI 🚀</strong>
   </h2>
-  <p style="margin-top: 15px; font-size: 1rem; opacity: 0.9;">
-    Be the first to test it live at <a href="https://bot.jhuxtelloitech.com" target="_blank"
-    style="color: #fff; text-decoration: underline;">bot.jhuxtelloitech.com</a>
+
+  <p style="margin-top: 15px; font-size: 1rem; opacity: 0.95; line-height: 1.5;">
+    From <strong>Justice Kwame Quansah Yeboah</strong> – CEO of <strong>Jhuxtello iTech Solutions</strong>.<br>
+    A new era of smart AI is here to power <strong>events, education & business automation</strong> across Ghana.
   </p>
+
+  <p style="margin-top: 15px; font-size: 1rem; opacity: 0.9;">
+    Be among the first to chat with <strong>JestBot</strong> at <br>
+    <a href="https://bot.jhuxtelloitech.com" target="_blank"
+       style="color: #fff; text-decoration: underline; font-weight: 600;">
+       bot.jhuxtelloitech.com
+    </a>
+  </p>
+
+  <div style="
+    position: absolute; bottom: 25px; 
+    font-size: 0.9rem; opacity: 0.7;
+  ">
+    <em>🎊 Congratulations from the entire Team Jest — Innovation Lives Here.</em>
+  </div>
+
+  <script>
+    // Simple confetti effect 🎊
+    const confettiCount = 80;
+    for (let i = 0; i < confettiCount; i++) {
+      const c = document.createElement('div');
+      c.style.position = 'fixed';
+      c.style.width = '8px'; c.style.height = '8px';
+      c.style.background = ['#FD7407', '#fff', '#001F3F'][Math.floor(Math.random()*3)];
+      c.style.top = Math.random()*100 + 'vh';
+      c.style.left = Math.random()*100 + 'vw';
+      c.style.opacity = Math.random();
+      c.style.borderRadius = '50%';
+      c.style.animation = `fall ${2+Math.random()*3}s linear ${Math.random()*2}s infinite`;
+      document.body.appendChild(c);
+    }
+  </script>
+
+  <style>
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #FD7407; }
+      to { text-shadow: 0 0 25px #fff, 0 0 40px #FD7407; }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    @keyframes fall {
+      to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+  </style>
 </div>
+
 
 <!-- 🎊 Confetti -->
 <canvas id="confettiCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   pointer-events: none; z-index: 9998; animation: fadeOut 2s ease 6s forwards;"></canvas>
 
-<!-- ✨ Congrats Banner -->
-<div id="congratsBanner" style="
-  position: fixed; top: 0; left: 50%; transform: translateX(-50%);
-  background: linear-gradient(90deg, #FD7407, #001F3F);
-  color: #fff; padding: 8px 25px; border-radius: 0 0 25px 25px;
-  font-weight: bold; font-size: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  z-index: 1000; opacity: 0; animation: slideDown 1s ease 6s forwards;">
-  🎊 Congrats CEO Justice — JestBot is Live!
-</div>
+
 
 <script>
   // 🎆 Simple Confetti Animation
