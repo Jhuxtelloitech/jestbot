@@ -63,7 +63,7 @@ Jhuxtello iTech Ltd is a Ghana-based digital agency founded by Justice Kwame Qua
 • Automate staff salary, overtime, deductions, and generate payslips
 
 ✅ JestVoucher – Online Result Checker & Voucher Sales System
-• Sell WAEC/BECE result checkers online-Jestadmissions.com/buy
+• Sell WAEC/BECE result checkers online-JestVoucher.com
 • Generate vouchers and track sales easily
 
 ✅ JestSMM.com – Boost Likes, Followers, and Views
@@ -106,7 +106,7 @@ def get_bot_response():
     # Decide the mode: brand vs general
     if any(word in user_input.lower() for word in [
        "jestvote", "jhuxtello", "itech", "jest bot", "jestadmissions", "smm", "buy voucher",
-    "loan nexus", "unicutoffs", "jestedu", "jestbank", "jestpayroll", "jestchurch",
+    "loan nexus", "unicutoffs", "jestedu", "jestbank", "jestpayroll", "jestchurch", "jestbot",
     "who made you", "who developed you", "who built you", "your developer", "your creator"
     ]):
         system_prompt = f"""
