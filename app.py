@@ -43,11 +43,11 @@ Our mission is to empower schools, organizations, and individuals with smart dig
 👤 ABOUT THE FOUNDER
 Justice Kwame Quansah Yeboah is a Ghanaian software engineer, developer, and founder of Jhuxtello iTech Solutions. 
 He is passionate about building intelligent systems that solve real problems in education, finance, and event management.
-Justice is also the creator of JestAi Systems, an AI-driven innovation for smart automation.
+Justice is also the creator of JestAi Systems, an AI-driven innovation for smart automation. Justice was born 19th October.
 
 📞 OFFICIAL CONTACT INFORMATION
 --------------------------------
-Main Line: +233 54 302 4209
+Main Line: +233543024209
 Alternative Lines: 0541709799 / 0553679665
 Email: info@jhuxtelloitech.com | support@jhuxtelloitech.com
 Website: https://jhuxtelloitech.com
@@ -118,7 +118,7 @@ Location: Mankessim – Nkusukum Duadze, Central Region, Ghana
 • USSD App Development
 • API Integration (MoMo, SMS, Payments)
 • Business Automation Software
-• SEO & Digital Marketing (via ACCOUNTIT LTD collaboration)
+• SEO & Digital Marketing
 • Branding & IT Consultancy
 
 🏆 COMPANY VISION
