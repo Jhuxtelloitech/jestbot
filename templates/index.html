@@ -303,6 +303,101 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
+<!-- 🎉 Birthday & Launch Intro Animation -->
+<div id="launchOverlay" style="
+  position: fixed; inset: 0; background: radial-gradient(circle at top, #001F3F 20%, #000 80%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: #fff; z-index: 9999; text-align: center; font-family: 'Poppins', sans-serif;
+  animation: fadeOut 2s ease 5s forwards;
+">
+  <h1 style="font-size: 2.3rem; margin: 0; background: linear-gradient(90deg, #FD7407, #fff);
+             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+             text-shadow: 0 0 15px rgba(253,116,7,0.6); animation: glow 2s infinite alternate;">
+    🎉 Happy Birthday Justice!
+  </h1>
+  <h2 style="margin-top: 10px; font-size: 1.4rem; color: #FD7407;">
+    Welcome to the Official Launch of <strong>JestBot 🚀</strong>
+  </h2>
+  <p style="margin-top: 15px; font-size: 1rem; opacity: 0.9;">
+    Be the first to test it live at <a href="https://bot.jhuxtelloitech.com" target="_blank"
+    style="color: #fff; text-decoration: underline;">bot.jhuxtelloitech.com</a>
+  </p>
+</div>
+
+<!-- 🎊 Confetti -->
+<canvas id="confettiCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 9998; animation: fadeOut 2s ease 6s forwards;"></canvas>
+
+<!-- ✨ Congrats Banner -->
+<div id="congratsBanner" style="
+  position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+  background: linear-gradient(90deg, #FD7407, #001F3F);
+  color: #fff; padding: 8px 25px; border-radius: 0 0 25px 25px;
+  font-weight: bold; font-size: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 1000; opacity: 0; animation: slideDown 1s ease 6s forwards;">
+  🎊 Congrats CEO Justice — JestBot is Live!
+</div>
+
+<script>
+  // 🎆 Simple Confetti Animation
+  const canvas = document.getElementById('confettiCanvas');
+  const ctx = canvas.getContext('2d');
+  let confetti = [];
+  const colors = ['#FD7407', '#001F3F', '#fff', '#FFD700'];
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  for (let i = 0; i < 100; i++) {
+    confetti.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      r: Math.random() * 6 + 2,
+      c: colors[Math.floor(Math.random() * colors.length)],
+      d: Math.random() * 2 + 1
+    });
+  }
+
+  function drawConfetti() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    confetti.forEach((c, i) => {
+      ctx.beginPath();
+      ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2, false);
+      ctx.fillStyle = c.c;
+      ctx.fill();
+      c.y += c.d;
+      if (c.y > canvas.height) confetti[i].y = -10;
+    });
+  }
+
+  const confettiInterval = setInterval(drawConfetti, 20);
+  setTimeout(() => clearInterval(confettiInterval), 6000); // stop after 6s
+
+  // ✨ Animations
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @keyframes glow {
+      from { text-shadow: 0 0 10px rgba(253,116,7,0.5), 0 0 20px rgba(253,116,7,0.3); }
+      to { text-shadow: 0 0 25px rgba(253,116,7,0.9), 0 0 35px rgba(253,116,7,0.6); }
+    }
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+    @keyframes slideDown {
+      from { transform: translate(-50%, -100%); opacity: 0; }
+      to { transform: translate(-50%, 0); opacity: 1; }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Fade chat in smoothly after intro
+  setTimeout(() => {
+    document.querySelector('#chatContainer').style.opacity = '0';
+    setTimeout(() => {
+      document.querySelector('#chatContainer').style.transition = 'opacity 2s ease';
+      document.querySelector('#chatContainer').style.opacity = '1';
+    }, 6000);
+  }, 100);
+</script>
 
   <!-- Sidebar -->
   <div id="sidebar">
