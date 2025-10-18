@@ -315,7 +315,7 @@
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   color: #fff; z-index: 9999; text-align: center; 
   font-family: 'Poppins', sans-serif; padding: 20px;
-  animation: fadeOut 2s ease 6s forwards;
+  animation: fadeOut 2s ease 9s forwards;
 ">
   <h1 style="
     font-size: 2.6rem; margin: 0;
@@ -347,6 +347,23 @@
     </a>
   </p>
 
+  <!-- 🖼️ Birthday Flyers Slideshow -->
+  <div id="flyerShow" style="
+    width: 280px; height: 280px;
+    margin-top: 25px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 25px rgba(253,116,7,0.8);
+    animation: fadeIn 1.5s ease forwards;
+  ">
+    <img src="https://jhuxtelloitech.com/wp-content/uploads/2025/10/Green-Modern-Minimal-Birthday-Flyer-Instagram-Post-Made-with-PosterMyWall.jpg" class="flyer active" style="width:100%; height:100%; object-fit: cover; border-radius: 20px;">
+    <img src="https://jhuxtelloitech.com/wp-content/uploads/2025/10/Campaign-Poster-Made-with-PosterMyWall-1.jpg" class="flyer" style="width:100%; height:100%; object-fit: cover; border-radius: 20px; display:none;">
+    <img src="https://jhuxtelloitech.com/wp-content/uploads/2025/10/Red-Gradient-Happy-Birthday-Flyer-Instagram-Story-Made-with-PosterMyWall.jpg" class="flyer" 
+      style="width:100%; height:100%; object-fit: cover; border-radius: 20px; display:none;">
+      <img src="https://jhuxtelloitech.com/wp-content/uploads/2025/10/Purple-Maximalist-Birthday-Flyer-Banner-4-6-Made-with-PosterMyWall.jpg" class="flyer" 
+      style="width:100%; height:100%; object-fit: cover; border-radius: 20px; display:none;">
+  </div>
+
   <div style="
     position: absolute; bottom: 25px; 
     font-size: 0.9rem; opacity: 0.7;
@@ -355,7 +372,7 @@
   </div>
 
   <script>
-    // Simple confetti effect 🎊
+    // Confetti effect 🎊
     const confettiCount = 80;
     for (let i = 0; i < confettiCount; i++) {
       const c = document.createElement('div');
@@ -369,6 +386,15 @@
       c.style.animation = `fall ${2+Math.random()*3}s linear ${Math.random()*2}s infinite`;
       document.body.appendChild(c);
     }
+
+    // Slideshow rotation
+    const flyers = document.querySelectorAll('.flyer');
+    let current = 0;
+    setInterval(() => {
+      flyers[current].style.display = 'none';
+      current = (current + 1) % flyers.length;
+      flyers[current].style.display = 'block';
+    }, 2500);
   </script>
 
   <style>
@@ -379,6 +405,11 @@
 
     @keyframes fadeOut {
       to { opacity: 0; visibility: hidden; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     @keyframes fall {
