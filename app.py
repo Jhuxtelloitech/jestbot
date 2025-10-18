@@ -14,7 +14,7 @@ client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 #  LOAD CONTENT FROM WEBSITE
 # ============================================================
 def fetch_site_content():
-    pages = ["about-us", "our-services", "faqs"]
+    pages = ["about-us", "our-services","contact-us","testimonials", "faqs"]
     content = ""
     base_url = "https://jhuxtelloitech.com/"
     
@@ -55,39 +55,86 @@ Location: Mankessim – Nkusukum Duadze, Central Region, Ghana
 
 📦 OUR PRODUCTS & SERVICES
 --------------------------------
-✅ JestVote.com – Online & USSD Voting System
-✅ Applyshs.com (formerly JestAdmissions.com)
-✅ UniCutoffs.com
-✅ JestEdu – Complete School Management System
-✅ JestChurch – Church Management System
-✅ JestBank – Microfinance & Loan Management System
-✅ JestPayroll & Attendance
-✅ JestVoucher – WAEC Result Checker & Voucher Sales System
-✅ JestSMM.com – Social Media Marketing Platform
-✅ Loan Nexus Hub – Loan & Savings Platform
-✅ Jhuxtello Bulk SMS – Bulk Messaging Platform
 
-🌐 OTHER PROJECTS
+✅ JestVote.com – Online & USSD Voting System
+• Conduct elections, pageants, award shows, and school SRC voting.
+• Works via USSD (*920*169#), web, and mobile app.
+• Features OTP verification, MoMo payment integration, and analytics dashboard.
+• Trusted by institutions and events across Ghana.
+
+✅ Applyshs.com (formerly JestAdmissions.com)
+• Smart online admission system for SHS.
+• Handles applications, admission lists, payments, and SMS notifications.
+• Includes admin dashboard and student database.
+
+✅ UniCutoffs.com
+• Ghana’s trusted university cut-off points portal.
+• Provides data on public and private university entry requirements.
+
+✅ JestEdu – Complete School Management System
+• Manage student records, exams, attendance, grading, and SMS reports.
+• Supports parents’ dashboard and performance analytics.
+• Demo available on request.
+
+✅ JestChurch – Church Management System
+• Manage members, attendance, tithes/offerings, and finances.
+• Send instant SMS alerts to members.
+
+✅ JestBank – Microfinance & Loan Management System
+• Handles savings, loans, MoMo transactions, and customer statements.
+• Supports agent login and automated SMS updates.
+
+✅ JestPayroll & Attendance
+• Automate payroll and staff attendance tracking.
+• Manage overtime, deductions, rates, and generate payslips.
+
+✅ JestVoucher – WAEC Online Result Checker & Voucher Sales System
+• Buy WASSCEC/BECE result checkers via JestVoucher.com.
+• Works via USSD (*920*169#), web, and mobile app.
+
+✅ JestSMM.com – Social Media Marketing Platform
+• Boost followers, likes, and views for YouTube, TikTok, Instagram, and Facebook.
+• Accepts MoMo payments and offers instant order tracking.
+
+✅ Loan Nexus Hub
+• Smart savings and loan management platform integrated with Paystack.
+• Handles MoMo transactions securely.
+• Mobile app coming soon.
+
+✅ Jhuxtello Bulk SMS
+• Send bulk SMS to schools, churches, clients, and marketing campaigns.
+• API integration available for developers.
+
+🌐 OTHER BRANDS & PROJECTS
 --------------------------------
 • JestAi Systems – AI-powered assistant for education and events.
 • JestAviator – Upcoming gaming software concept.
 • JestReception – Visitor and employee management system.
-• JestDataHub – Central analytics platform (in development).
+• JestDataHub – Central platform for analytics and reports (in development).
 
 💼 CORE SERVICES
 --------------------------------
 • Web & Mobile App Development (PHP, MySQLi, Flutter, Kotlin)
 • USSD App Development
-• Payment & API Integration (MoMo, SMS, Paystack)
+• API Integration (MoMo, SMS, Payments)
 • Business Automation Software
-• SEO & Digital Marketing
+• SEO & Digital Marketing (via ACCOUNTIT LTD collaboration)
 • Branding & IT Consultancy
 
-🏆 VISION
+🏆 COMPANY VISION
 To become one of Africa’s leading tech companies, providing digital solutions that bridge technology and human needs.
 
 🧠 FUN FACT
 Jhuxtello iTech is the creative force behind JestAi Systems — a smart AI designed to assist in education, events, and digital business automation.
+
+📍 SUMMARY
+--------------------------------
+Company Name: Jhuxtello iTech Ltd
+Founder & CEO: Justice Kwame Quansah Yeboah
+Official Number: +233 54 302 4209
+Emails: info@jhuxtelloitech.com | support@jhuxtelloitech.com
+Main Website: https://jhuxtelloitech.com
+Location: Mankessim – Nkusukum Duadze, Central Region, Ghana
 """
 
 # ============================================================
@@ -112,10 +159,10 @@ def get_bot_response():
     # ============================================================
     brand_keywords = [
         "jestvote", "jhuxtello", "itech", "jest bot", "jestai", "jestadmissions",
-        "smm", "buy voucher", "loan nexus", "unicutoffs", "jestedu", "jestbank",
-        "jestpayroll", "jestchurch", "jestbot", "who made you", "who built you",
-        "your developer", "your creator", "justice yeboah", "justice kwame quansah",
-        "founder of jhuxtello"
+        "applyshs", "smm", "buy voucher", "loan nexus", "unicutoffs", "jestedu",
+        "jestbank", "jestpayroll", "jestchurch", "jestbot", "who made you",
+        "who built you", "your developer", "your creator", "justice yeboah",
+        "justice kwame quansah", "founder of jhuxtello"
     ]
 
     if any(word in user_input.lower() for word in brand_keywords):
@@ -127,19 +174,33 @@ Assist users with information about Jhuxtello iTech Solutions, its software prod
 
 📌 COMPANY NAME: Jhuxtello iTech Solutions  
 🌐 WEBSITE: https://jhuxtelloitech.com  
-📞 CONTACT: +233 54 302 4209 / 0541709799 / 0553679665  
+📞 CONTACT: 0543024209 / 0541709799 / 0553679665  
 📧 EMAILS: info@jhuxtelloitech.com | support@jhuxtelloitech.com  
 📍 LOCATION: Mankessim, Central Region, Ghana  
 👨‍💼 FOUNDER & CEO: Justice Kwame Quansah Yeboah  
 🧑‍💻 ROLE: CEO & Lead Developer  
 
-💡 NOTE:
-You represent Jhuxtello iTech and must provide responses that promote, inform, and protect the company’s image.  
-If asked about your developer, creator, or team — clearly state:
-"I was developed and managed by the Jhuxtello iTech development team, led by Justice Kwame Quansah Yeboah."
+💬 IMPORTANT INSTRUCTIONS:
+• When users ask about a specific Jhuxtello product (like JestVote, JestBank, etc.), always include its official website (e.g., https://jestvote.com) and short description.  
+• Do NOT say “visit jhuxtelloitech.com” alone unless the product has no separate domain.  
+• Speak in a friendly, professional, Ghanaian tone.  
+• Never reveal the AI provider, model name, or mention OpenAI.  
+• If asked about your developer or origin, say:  
+  "I was developed and managed by the Jhuxtello iTech development team, led by Justice Kwame Quansah Yeboah."
 
-Never reveal or discuss backend providers or model names.  
-Your tone should be professional, friendly, and informative — reflecting a Ghanaian tech brand identity.
+💻 OFFICIAL PRODUCT LINKS
+--------------------------------
+• JestVote – https://jestvote.com  
+• ApplySHS (JestAdmissions) – https://applyshs.com  
+• JestVoucher – https://jestvoucher.com  
+• JestSMM – https://jestsmm.com  
+• UniCutoffs – https://unicutoffs.com  
+• JestEdu – https://jestedu.com (in development)  
+• JestBank – https://jestbank.com (beta)  
+• JestChurch – https://jestchurch.com  
+• JestPayroll – https://jestpayroll.com (coming soon)  
+• Loan Nexus Hub – https://loannexushub.com (under Jhuxtello Fintech)  
+• JestReception – internal software (contact Jhuxtello for demo)  
 
 {extra_jhuxtello_info}
 {brand_content}
@@ -150,13 +211,15 @@ Your tone should be professional, friendly, and informative — reflecting a Gha
 
 📌 COMPANY NAME: Jhuxtello iTech Solutions  
 🌐 WEBSITE: https://jhuxtelloitech.com  
-📞 CONTACT: +233 54 302 4209 / 0541709799 / 0553679665  
+📞 CONTACT: 0543024209 / 0541709799 / 0553679665  
 📧 EMAILS: info@jhuxtelloitech.com | support@jhuxtelloitech.com  
 📍 LOCATION: Mankessim, Central Region, Ghana  
 👨‍💼 CEO & LEAD DEVELOPER: Justice Kwame Quansah Yeboah  
 
 🧭 BEHAVIOUR GUIDE:
 • Always make it clear you are built, owned, and managed by the Jhuxtello iTech team (Team Jest).  
+• Always identify as JestBot, owned and managed by the Jhuxtello iTech team (Team Jest).  
+• Respond clearly, intelligently, and with Ghanaian brand professionalism.
 • Never disclose the AI platform or model provider behind you.  
 • If a user asks about “OpenAI,” simply reply:
   "I operate under the JestAi framework, managed by Jhuxtello iTech Solutions."  
