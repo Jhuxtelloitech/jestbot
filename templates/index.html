@@ -505,6 +505,8 @@
 
   <audio id="typeSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_021f9b75c3.mp3?filename=keyboard-click-107974.mp3" preload="auto"></audio>
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <script>
     const input = document.getElementById("userInput");
     const chatLog = document.getElementById("chatLog");
@@ -573,8 +575,27 @@
     }
 
     function showAbout() {
-      alert("🤖 JestBot v2.1\nBuilt by Jhuxtello iTech Solutions (Ghana)\nEmpowering events, education & automation with AI.");
-    }
+  Swal.fire({
+    title: "🤖 JestBot v2.1",
+    html: `
+      <p><strong>Built & Managed by:</strong> Jhuxtello iTech Solutions (Ghana)</p>
+      <p><strong>Founder & CEO:</strong> Justice Kwame Quansah Yeboah</p>
+      <hr>
+      <p><strong>💡 About JestBot:</strong><br>
+      JestBot is an AI assistant built by Jhuxtello iTech Solutions under the JestAi Systems framework. 
+      It powers smart automation in education, events, and business.</p>
+      <p><strong>🏢 About Jhuxtello iTech:</strong><br>
+      A Ghanaian tech company developing intelligent systems for schools, organizations, and entrepreneurs.</p>
+      <p><strong>🎯 Mission:</strong><br>
+      To build digital solutions that simplify work and empower growth across Africa.</p>
+      <p><strong>🌐</strong> <a href='https://jhuxtelloitech.com' target='_blank'>jhuxtelloitech.com</a></p>
+      <p><strong>📞</strong> +233 54 302 4209 | info@jhuxtelloitech.com</p>
+      <p><strong>🎂 Founder’s Birthday:</strong> October 19</p>
+    `,
+    confirmButtonText: "Close",
+    confirmButtonColor: "#0078D7",
+  });
+}
 
     function startListening() {
       if (!('webkitSpeechRecognition' in window)) {
