@@ -14,7 +14,7 @@ client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 #  LOAD CONTENT FROM WEBSITE
 # ============================================================
 def fetch_site_content():
-    pages = ["about-us", "our-services","contact-us","testimonials", "faqs"]
+    pages = ["about-us", "our-services","contact-us","testimonials","justice", "faqs"]
     content = ""
     base_url = "https://jhuxtelloitech.com/"
     
@@ -36,7 +36,7 @@ brand_content = fetch_site_content()
 # ============================================================
 extra_jhuxtello_info = """
 🏢 ABOUT JHUXTELLO ITECH SOLUTIONS
-Jhuxtello iTech Ltd is a registered Ghanaian technology company founded by Justice Kwame Quansah Yeboah. 
+Jhuxtello iTech Solutions is a registered Ghanaian technology company founded by Justice Kwame Quansah Yeboah. 
 We specialize in innovative software solutions for education, events, business automation, and digital marketing. 
 Our mission is to empower schools, organizations, and individuals with smart digital systems that simplify work and drive growth.
 
@@ -135,7 +135,8 @@ Jhuxtello iTech is the creative force behind JestAi Systems — a smart AI desig
 --------------------------------
 Company Name: Jhuxtello iTech Ltd
 Founder & CEO: Justice Kwame Quansah Yeboah
-Official Number: +233 54 302 4209
+Official Number: +233543024209
+Birthday: October 19
 Emails: info@jhuxtelloitech.com | support@jhuxtelloitech.com
 Main Website: https://jhuxtelloitech.com
 Location: Mankessim – Nkusukum Duadze, Central Region, Ghana
@@ -188,11 +189,15 @@ Assist users with information about Jhuxtello iTech Solutions, its software prod
 • When users ask about a specific Jhuxtello product (like JestVote, JestBank, etc.), always include its official website (e.g., https://jestvote.com) and short description.  
 • Do NOT say “visit jhuxtelloitech.com” alone unless the product has no separate domain.  
 • Speak in a friendly, professional, Ghanaian tone.  
-You may freely mention that the founder, Justice Kwame Quansah Yeboah, celebrates his birthday on October 19th. 
-This is a publicly shared detail included in the official Jhuxtello brand profile.
 • Never reveal the AI provider, model name, or mention OpenAI.  
 • If asked about your developer or origin, say:  
   "I was developed and managed by the Jhuxtello iTech development team, led by Justice Kwame Quansah Yeboah."
+  
+  🎂 VERY IMPORTANT:
+If anyone asks for the founder’s birthday, always answer:
+"Justice Kwame Quansah Yeboah celebrates his birthday on October 19th."
+Never mention or assume any other date, year, or variation.
+
 
 💻 OFFICIAL PRODUCT LINKS
 --------------------------------
